@@ -3,9 +3,9 @@
       <li>Breed: <%= @dog.breed%> </li>
       <li>Age: <%= @dog.age%></li>
       <% if @dog.sex == 'M' %>
-        <li>Sex: <span style="color:blue;">male</span></li>
+        <li>Sex: male</li>
       <% else %>
-        <li>Sex: <span style="color:pink;">female</span></li>
+        <li>Sex: female</li>
       <% end %>
       <% if @dog.shelter %>
         <li>Shelter: <%= link_to @dog.shelter.name, shelter_path(@dog.shelter) %></li>
