@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Breed</th>
+    <th>Age</th>
+    <th>Sex</th>
+    <th>Shelter</th>
+    <th>Adopt</th>
+  </tr>
+<% dogs.all.each do |dog|%>
+  <% if !dog.owner %>
+  <tr>
+    <td><strong><%=link_to dog.name, dog_path(dog)%></strong></td>
+    <td><%=dog.breed%></td>
+		<td><%= dog.age%></td> 
+
+		<td><%= gender(dog) %></td>
+ 
+    <td><%= link_to dog.shelter.name, shelter_path(dog.shelter) %></td>
+    <td><button><a href="/dogs/<%=dog.id%>/adopt">Adopt Me!</a></button> </td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<hr>
+<hr>
+<% lonely_dogs.each do |dog| %>
+	<%= dog.name%>
+	<% end %>

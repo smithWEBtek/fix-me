@@ -1,5 +1,5 @@
 <h1>All Owners:</h1>
-
+# move to partial
 <% Owner.all.reject{|owner| owner.dogs.length == 0}.each do |owner| %>
   <h2><%= owner.name %>'s dogs:</h2>
   <table>

@@ -1,32 +1,13 @@
 <h1>Dogs up for Adoption:</h1>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Breed</th>
-    <th>Age</th>
-    <th>Sex</th>
-    <th>Shelter</th>
-    <th>Adopt</th>
-  </tr>
-<% Dog.all.each do |dog|%>
-  <% if !dog.owner %>
-  <tr>
-    <td><strong><%=link_to dog.name, dog_path(dog)%></strong></td>
-    <td><%=dog.breed%></td>
-    <td><%= dog.age%></td>
-    <% if dog.sex == 'M' %>
-    <td>male</td>
-    <% else %>
-    <td>female</td>
-    <% end %>
-    <td><%= link_to dog.shelter.name, shelter_path(dog.shelter) %></td>
-    <td><button><a href="/dogs/<%=dog.id%>/adopt">Adopt Me!</a></button> </td>
-  </tr>
-  <% end %>
-<% end %>
-</table>
+
+ <!-- move to partial -->
+
+	<%= render partial: "dogs/dogs", locals: {dogs: @dogs, lonely_dogs: shelter_dogs} %>
 
 
+	
+	<%# binding.pry %>
+ 
 <h1>Adopted Dogs:</h1>
 <table>
   <tr>
@@ -35,18 +16,20 @@
     <th>Age</th>
     <th>Sex</th>
     <th>Owner</th>
-  </tr>
-<% Dog.all.each do |dog|%>
+	</tr>
+	
+<% @dogs.each do |dog|%>
   <% if dog.owner %>
   <tr>
-    <td><strong><%=link_to dog.name, dog_path(dog)%></strong></td>
-    <td><%=dog.breed%></td>
-    <td><%= dog.age%></td>
-    <% if dog.sex == 'M' %>
-    <td>male</td>
-    <% else %>
-    <td>female</td>
-    <% end %>
+	 
+		<td><strong><%= link_to dog.name, dog_path(dog)%></strong></td>
+
+    <td><%= dog.breed%></td>
+		<td><%= dog.age%></td>
+		
+
+		<td><%= gender(dog) %></td>
+ 
     <td><%= link_to dog.owner.name, owner_path(dog.owner) %></td>
     <td><button><a href="/dogs/<%=dog.id%>/abandon">Abandon Me!</a>
   </tr>
@@ -54,3 +37,10 @@
   <% end %>
 <% end %>
 </table>
+
+<!-- use shelter_dogs helper method -->
+<!-- move to partial -->
+ 
+
+<!-- <h1>Shelter Dogs</h1> -->
+ 

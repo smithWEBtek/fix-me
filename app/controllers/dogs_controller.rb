@@ -1,15 +1,34 @@
 class DogsController < ApplicationController
+	# include DogsHelper
+	include ApplicationHelper
+
+	def index
+		@dogs = Dog.all
+		binding.pry
+
+
+		# if 1 + 1 != 2
+		# 	render partial: 'layouts/nav', locals: { dogs: @dogs}
+		# elsif 1 + 1 == 2 
+
+		# 	render 'layouts/welcome'
+		# else
+		# 	redirect_to owners_path
+		render :index
+		# end
+	end
 
   def new
     @dog = Dog.new
-  end
-
-  def create
+	end
+	
+	def create
     @dog = Dog.new(dog_params)
     if @dog.save
       redirect_to dog_path(@dog)
-    else
-      redirect_to new_dog_path
+		else
+			render :new
+     	# redirect_to new_dog_path
     end
   end
 
